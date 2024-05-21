@@ -2,7 +2,7 @@ import dedent from 'dedent';
 import nock from 'nock';
 import { parseSiteMapper, replaceDomain } from '../mapper';
 
-const siteMap = `
+const SITEMAP = `
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
@@ -10,12 +10,12 @@ const siteMap = `
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>https://bjerk.io/projects/indiv</loc>
+    <loc>https://example.test/projects/indiv</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bjerk.io/projects/lent</loc>
+    <loc>https://example.test/projects/lent</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -24,27 +24,27 @@ const siteMap = `
 
 describe('mapper', () => {
   it('should parse a sitemap.xml', async () => {
-    const scope = nock('https://bjerk.io')
+    const scope = nock('https://example.test')
       .get('/sitemap.xml')
-      .reply(200, siteMap);
+      .reply(200, SITEMAP);
 
-    const res = await parseSiteMapper('https://bjerk.io/sitemap.xml');
+    const res = await parseSiteMapper('https://example.test/sitemap.xml');
     expect(res).toMatchInlineSnapshot(`
       Array [
-        "https://bjerk.io/projects/indiv",
-        "https://bjerk.io/projects/lent",
+        "https://example.test/projects/indiv",
+        "https://example.test/projects/lent",
       ]
     `);
   });
   it('should replace domain', () => {
     const domains = dedent`
-      https://bjerk.io/about/
-      https://bjerk.io/services/
-      https://bjerk.io/
+      https://example.test/about/
+      https://example.test/services/
+      https://example.test/
     `;
 
     const replaced = replaceDomain(domains, {
-      from: 'https://bjerk.io',
+      from: `https://example.test`,
       to: 'https://btools.no/',
     });
 

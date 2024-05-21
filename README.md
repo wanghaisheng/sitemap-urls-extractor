@@ -1,2 +1,3 @@
-# parse-sitemap
+# sitemap-urls-extractor
+
 Parse sitemap in Github Action

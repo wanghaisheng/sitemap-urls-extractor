@@ -11,7 +11,7 @@ export async function main(): Promise<void> {
 
   if (config.replaceDomain) {
     invariant(config.replaceDomain, 'expect replaceDomain');
-    output = replaceDomain(output, config.replaceDomain)
+    output = replaceDomain(output, config.replaceDomain);
   }
 
   setOutput('urls', output);

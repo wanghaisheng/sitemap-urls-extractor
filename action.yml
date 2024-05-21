@@ -1,11 +1,11 @@
-name: Parse Sitemap
-description: Get URLs from sitemap.xml
-author: Simen A. W. Olsen
+name: Sitemap URL Extractor
+description: Extract URLs from sitemap.xml
+author: Tom Carrio
 
 inputs:
   sitemap-url:
     required: true
-    description: E.g. https://bjerk.io/sitemap.xml
+    description: e.g. https://www.eearomatics.com/sitemap.xml
   replace-domain:
     required: false
     description: Set to replace domain in sitemap
@@ -15,7 +15,7 @@ outputs:
     description: URLs separated by new lines
     
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'
 
 branding:

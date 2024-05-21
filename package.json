@@ -1,28 +1,24 @@
 {
-  "name": "parse-sitemap",
-  "version": "1.1.1",
+  "name": "sitemap-urls-extractor",
+  "version": "1.0.0",
   "private": true,
   "description": "Get URLs from sitemap.xml",
   "keywords": [
     "sitemap",
-    "github-actions",
-    "sitemap-parse",
-    "lighthouse",
-    "lighthouse-ci"
+    "github-actions"
   ],
-  "repository": "github:cobraz/parse-sitemap",
+  "repository": "github:tcarrio/sitemap-urls-extractor",
   "license": "Apache-2.0",
-  "author": "Simen A. W. Olsen <so@bjerk.io>",
+  "author": "Tom Carrio <tom@carrio.dev>",
   "main": "build/main.js",
   "scripts": {
     "dev": "ts-node src/main.ts",
-    "build": "ncc build --source-map src/main.ts",
+    "build": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
-    "generate": "graphql-codegen --config codegen.yml",
     "lint": "eslint src/**/*.ts",
     "test": "jest --passWithNoTests",
-    "all": "yarn  run build && yarn  run format && yarn run lint && yarn run test",
+    "all": "yarn run build && yarn run format && yarn run lint && yarn run test",
     "prepare": "husky install .github/husky"
   },
   "lint-staged": {
